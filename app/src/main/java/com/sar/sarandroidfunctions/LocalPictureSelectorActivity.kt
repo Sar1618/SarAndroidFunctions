@@ -15,15 +15,15 @@ class LocalPictureSelectorActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.apply {
-//                    minifyBitmapFromURI(
-//                        this@LocalPictureSelectorActivity,
-//                        this,
-//                        dataBinding.ivLocalPictureSelector.width,
-//                        dataBinding.ivLocalPictureSelector.height
-//                    )?.apply {
-//                        dataBinding.ivLocalPictureSelector.setImageBitmap(this)
-//                    }
-                    dataBinding.ivLocalPictureSelector.setImageURI(this)
+                    minifyBitmapFromURI(
+                        this@LocalPictureSelectorActivity,
+                        this,
+                        dataBinding.ivLocalPictureSelector.width,
+                        dataBinding.ivLocalPictureSelector.height
+                    )?.apply {
+                        dataBinding.ivLocalPictureSelector.setImageBitmap(this)
+                    }
+//                    dataBinding.ivLocalPictureSelector.setImageURI(this)
                     Toast.makeText(
                         this@LocalPictureSelectorActivity,
                         getFilePathFromURI(this@LocalPictureSelectorActivity, this),
