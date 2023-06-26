@@ -1,0 +1,2 @@
+# SarAndroidFunctions
+安卓各种常用功能的收集，便于在各种不同项目中快速复用
