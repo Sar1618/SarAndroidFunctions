@@ -2,6 +2,7 @@ package com.sar.sarandroidfunctions
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -66,6 +67,27 @@ fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeig
         }
     }
     return inSampleSize
+}
+
+/**
+ * 过滤掉已经被授予了的权限
+ */
+fun filterPermissionsForRequest(
+    context: Context,
+    permissions: MutableList<String>
+): MutableList<String> {
+    if (permissions.size == 0) {
+        return permissions
+    }
+    val iterator = permissions.iterator()
+    while (iterator.hasNext()) {
+        val next = iterator.next()
+        val checkPermission = context.checkSelfPermission(next)
+        if (checkPermission == PackageManager.PERMISSION_GRANTED) {
+            iterator.remove()
+        }
+    }
+    return permissions
 }
 
 /**

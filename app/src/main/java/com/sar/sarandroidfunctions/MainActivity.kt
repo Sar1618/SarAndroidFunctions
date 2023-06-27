@@ -14,5 +14,8 @@ class MainActivity : AppCompatActivity() {
         dataBinding.tvLocalPictureSelector.setOnClickListener {
             startActivity(Intent(this, LocalPictureSelectorActivity::class.java))
         }
+        dataBinding.tvOnlineMp4Playback.setOnClickListener {
+            startActivity(Intent(this, OnlineMp4PlaybackActivity::class.java))
+        }
     }
 }
