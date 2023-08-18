@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -14,8 +16,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SarAndroidFunctions"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".AudioRecordActivity"
+            android:exported="false"
+            android:label="@string/title_activity_audio_record"
+            android:theme="@style/Theme.SarAndroidFunctions" />
+        <activity
+            android:name=".AudioPlayActivity"
+            android:exported="false"
+            android:label="@string/title_activity_audio_play"
+            android:theme="@style/Theme.SarAndroidFunctions" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,7 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".LocalPictureSelectorActivity" />
         <activity android:name=".OnlineMp4PlaybackActivity" />
         <activity android:name=".AudioRecordAndAudioTrackActivity" />
