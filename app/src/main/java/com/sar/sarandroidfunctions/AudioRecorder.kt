@@ -5,8 +5,8 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder.AudioSource
 
-object AudioRecorder : Thread() {
-    val audioSource = AudioSource.MIC
+object AudioRecorder : Runnable {
+    val audioSource = AudioSource.VOICE_COMMUNICATION
     val sampleRateInHz = 44100
     val channelConfig = AudioFormat.CHANNEL_IN_MONO
     val audioFormat = AudioFormat.ENCODING_PCM_16BIT
@@ -20,6 +20,8 @@ object AudioRecorder : Thread() {
 
     var onDataReceiver: ((ByteArray) -> Unit)? = null
 
+    var thread: Thread? = null
+
     @SuppressLint("MissingPermission")
     fun startRecord(onDataReceiver: (ByteArray) -> Unit) {
         this.onDataReceiver = onDataReceiver
@@ -28,13 +30,15 @@ object AudioRecorder : Thread() {
         )
         audioRecord?.startRecording()
         isRecording = true
-        start()
+        thread = Thread(this)
+        thread?.start()
     }
 
     fun stopRecord() {
         isRecording = false
-        join()
-        interrupt()
+        thread?.join()
+        thread?.interrupt()
+        thread = null
         audioRecord?.release()
         audioRecord = null
         onDataReceiver = null

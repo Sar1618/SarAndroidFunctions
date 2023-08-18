@@ -2,4 +2,5 @@
     <string name="app_name">SarAndroidFunctions</string>
     <string name="title_activity_audio_record">AudioRecordActivity</string>
     <string name="title_activity_audio_play">AudioPlayActivity</string>
+    <string name="title_activity_audio_record_and_play_at_same_time">AudioRecordAndPlayAtSameTimeActivity</string>
 </resources>

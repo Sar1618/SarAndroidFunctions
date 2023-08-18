@@ -35,6 +35,12 @@ class AudioRecordAndAudioTrackActivity : AppCompatActivity() {
             }
             startActivity(Intent(this, AudioPlayActivity::class.java))
         }
+        dataBinding.tvAudioRecordAndPlay.setOnClickListener {
+            if (!isGrantAllNeedPermissions) {
+                return@setOnClickListener
+            }
+            startActivity(Intent(this, AudioRecordAndPlayAtSameTimeActivity::class.java))
+        }
         requestPermissions = filterPermissionsForRequest(this, requestPermissions)
         if (requestPermissions.size > 0) {
             requestPermissions(requestPermissions.toTypedArray(), requestPermissionsCode)
