@@ -17,5 +17,11 @@ class MainActivity : AppCompatActivity() {
         dataBinding.tvOnlineMp4Playback.setOnClickListener {
             startActivity(Intent(this, OnlineMp4PlaybackActivity::class.java))
         }
+        dataBinding.tvAudioRecordAndAudioTrack.setOnClickListener {
+            startActivity(Intent(this, AudioRecordAndAudioTrackActivity::class.java))
+        }
+        dataBinding.tvOpenSLES.setOnClickListener {
+            startActivity(Intent(this, OpenSLESActivity::class.java))
+        }
     }
 }
